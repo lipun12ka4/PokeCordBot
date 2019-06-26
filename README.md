@@ -7,6 +7,10 @@ A simple bot to play pokecord
 3. To get your Token go [here](https://discordhelp.net/discord-token)
 4. To get your channel ID follow this guide [here](https://support.discordapp.com/hc/en-us/articles/206346498-Where-can-I-find-my-User-Server-Message-ID-)
 
+##WARNING!!!
+current version bug! when it generates the properties file make sure to edit it and change the character to something like , or p
+will be fixed soon
+
 ###### It's recommended to use an alt account when using this bot as it is against the discord [TOS](https://support.discordapp.com/hc/en-us/articles/115002192352-Automated-user-accounts-self-bots-)
 
 ### Download
