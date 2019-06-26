@@ -7,7 +7,7 @@ A simple bot to play pokecord
 3. To get your Token go [here](https://discordhelp.net/discord-token)
 4. To get your channel ID follow this guide [here](https://support.discordapp.com/hc/en-us/articles/206346498-Where-can-I-find-my-User-Server-Message-ID-)
 
-##WARNING!!!
+## WARNING!!!
 current version bug! when it generates the properties file make sure to edit it and change the character to something like , or p
 will be fixed soon
 also manually add the token/channelID to the properties file too until futher notice
