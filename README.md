@@ -10,6 +10,7 @@ A simple bot to play pokecord
 ##WARNING!!!
 current version bug! when it generates the properties file make sure to edit it and change the character to something like , or p
 will be fixed soon
+also manually add the token/channelID to the properties file too until futher notice
 
 ###### It's recommended to use an alt account when using this bot as it is against the discord [TOS](https://support.discordapp.com/hc/en-us/articles/115002192352-Automated-user-accounts-self-bots-)
 
