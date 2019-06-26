@@ -162,7 +162,7 @@ class Main
         }
         catch(Exception e)
         {
-            Main.Output("Debug: " + e.getMessage());
+            Main.Output("No lists found!");
         }
     }
 }
