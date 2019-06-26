@@ -7,7 +7,6 @@ import java.util.List;
 
 public class GeneratePokedex
 {
-    private int spaceSize = 40;
     private List<PokemonData> pokemonData = new ArrayList<>();
     public List<PokemonData> loadPokedex() {
 
@@ -24,49 +23,31 @@ public class GeneratePokedex
         }
         return this.pokemonData;
     }
-    public void loadImagesToArray()
-    {
-        File folder = new File("pokedex");
-        File[] pokemonIndex = folder.listFiles();
-        if(pokemonIndex != null)
-        {
-            for(int i = 0; i < pokemonIndex.length; i++)
-            {
-                try
-                {
-                }
-                catch (Exception e)
-                {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
     public void start()
     {
         File folder = new File("pokedex");
         File[] pokemonIndex = folder.listFiles();
         assert pokemonIndex != null;
-        for(int i = 0; i < pokemonIndex.length; i++)
+        for (File pokemonIndex1 : pokemonIndex)
         {
             try
             {
-                CustomImageReader(ImageIO.read(pokemonIndex[i]),pokemonIndex[i].getName().substring(0,pokemonIndex[i].getName().length() - 4));
+                CustomImageReader(ImageIO.read(pokemonIndex1), pokemonIndex1.getName().substring(0, pokemonIndex1.getName().length() - 4));
             } catch (IOException e)
             {
                 e.printStackTrace();
             }
         }
-        WriteObjectToFile(pokemonData,"pokedex.dat");
+        WriteObjectToFile(pokemonData);
         System.out.println("New pokedex generated");
     }
-    public void WriteObjectToFile(Object serObj,String filepath)
+    private void WriteObjectToFile(Object serObj)
     {
 
         try
         {
 
-            FileOutputStream fileOut = new FileOutputStream(filepath);
+            FileOutputStream fileOut = new FileOutputStream("pokedex.dat");
             ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
             objectOut.writeObject(serObj);
             objectOut.close();
@@ -77,16 +58,16 @@ public class GeneratePokedex
             ex.printStackTrace();
         }
     }
-    public double CustomImageReader(BufferedImage knownPokemon,String pokemonName)
+    private void CustomImageReader(BufferedImage knownPokemon, String pokemonName)
     {
         List<Integer> xlist = new ArrayList<>();
         List<Integer> ylist = new ArrayList<>();
-        for(int x = 0; x < 240;x += spaceSize)
+        int spaceSize = 40;
+        for(int x = 0; x < 240; x += spaceSize)
         {
             xlist.add(x);
             ylist.add(x);
         }
-        long difference = 0;
         int[][] storageInts = new int[xlist.size()][xlist.size()];
         for (int y = 0; y < xlist.size(); y++)
         {
@@ -97,9 +78,6 @@ public class GeneratePokedex
             }
         }
         pokemonData.add(new PokemonData(pokemonName,storageInts));
-        //System.out.println("Registered: " + pokemonName);
-        if(difference > 0) return -1;
-        return 0;
     }
 
 

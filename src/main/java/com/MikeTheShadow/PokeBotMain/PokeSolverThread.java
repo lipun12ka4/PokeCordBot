@@ -69,7 +69,7 @@ public class PokeSolverThread implements Runnable
             Main.Output("Unknown pokemon error!");
             try
             {
-                output.createNewFile();
+                if(!output.createNewFile())return;
             } catch (IOException e1)
             {
                 e1.printStackTrace();
@@ -119,58 +119,6 @@ public class PokeSolverThread implements Runnable
         {
             thread = new Thread(this,threadName);
             thread.start();
-        }
-    }
-    //Compare the two images on a random pixelList there is a small chance that it'll screw up but hasn't happened yet
-    private static int CustomImageReader(BufferedImage imgA, BufferedImage imgB)
-    {
-        int width1 = imgA.getWidth();
-        int width2 = imgB.getWidth();
-        int height1 = imgA.getHeight();
-        int height2 = imgB.getHeight();
-
-        if ((width1 != width2) || (height1 != height2)) return -1;
-        else
-        {
-            Random random = new Random();
-            ArrayList<Integer> xlist = new ArrayList<>();
-            ArrayList<Integer> ylist = new ArrayList<>();
-            int pixel_amount = 100;
-            do
-            {
-                int ran1 = random.nextInt(height1);
-                int ran2 = random.nextInt(width1);
-
-                if (!xlist.contains(ran1) || xlist.size() <= pixel_amount)
-                {
-                    xlist.add(ran1);
-                }
-                if (!ylist.contains(ran2) || ylist.size() <= pixel_amount)
-                {
-                    ylist.add(ran2);
-                }
-
-            } while (ylist.size() < pixel_amount || xlist.size() < pixel_amount);
-            long difference = 0;
-            for (int y = 0; y < xlist.size(); y++)
-            {
-                for (int x = 0; x < ylist.size(); x++)
-                {
-                    int rgbA = imgA.getRGB(xlist.get(x), ylist.get(y));
-                    int rgbB = imgB.getRGB(xlist.get(x), ylist.get(y));
-                    int redA = (rgbA >> 16) & 0xff;
-                    int greenA = (rgbA >> 8) & 0xff;
-                    int blueA = (rgbA) & 0xff;
-                    int redB = (rgbB >> 16) & 0xff;
-                    int greenB = (rgbB >> 8) & 0xff;
-                    int blueB = (rgbB) & 0xff;
-                    difference += Math.abs(redA - redB);
-                    difference += Math.abs(greenA - greenB);
-                    difference += Math.abs(blueA - blueB);
-                    if(difference > 0) return -1;
-                }
-            }
-            return 0;
         }
     }
     //Old method of image reading still usable but 10x slower. New version can guess a pokemon faster than the image can load for the average user lol

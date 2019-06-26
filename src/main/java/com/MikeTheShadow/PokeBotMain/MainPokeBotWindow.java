@@ -209,7 +209,7 @@ public class MainPokeBotWindow
             e.printStackTrace();
         }
     }
-    public static void load()
+    static void load()
     {
         catchOnlyWhitelisted.setSelected(Main.catchOnlyWhiteListed);
         sendMessages.setSelected(Main.sendMessages);

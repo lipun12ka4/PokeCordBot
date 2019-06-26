@@ -21,6 +21,7 @@ public class OnConnect implements Runnable
     }
     public void run()
     {
+        //noinspection InfiniteLoopStatement
         while(true)
         {
             try
@@ -34,12 +35,12 @@ public class OnConnect implements Runnable
             }
             catch (Exception e)
             {
-
+                e.printStackTrace();
             }
         }
 
     }
-    public void start()
+    void start()
     {
         if(thread == null)
         {

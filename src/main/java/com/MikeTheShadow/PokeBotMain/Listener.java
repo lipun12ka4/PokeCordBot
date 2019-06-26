@@ -4,9 +4,7 @@ import net.dv8tion.jda.core.entities.*;
 import net.dv8tion.jda.core.events.ReadyEvent;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
-
 import javax.imageio.ImageIO;
-import javax.xml.bind.DatatypeConverter;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.URL;
@@ -54,9 +52,9 @@ public class Listener extends ListenerAdapter
                 PokeSolverThread solve = new PokeSolverThread("PokeThread",msg.getTextChannel(),image);
                 solve.start();
             }
-            catch (Exception e)
+            catch (IOException e)
             {
-                e.getMessage();
+                e.printStackTrace();
             }
         }
     }
@@ -67,7 +65,7 @@ public class Listener extends ListenerAdapter
         {
             new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
         }
-        catch (Exception e)
+        catch (Exception ignored)
         {
 
         }

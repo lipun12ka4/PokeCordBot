@@ -7,11 +7,10 @@ import java.util.List;
 
 public class ImageReader
 {
-    private static int spaceSize = 40;
 
 
-    BufferedImage pokemon;
-    List<PokemonData> pokedex;
+    private BufferedImage pokemon;
+    private List<PokemonData> pokedex;
 
     public ImageReader(BufferedImage unkownPokemon, List<PokemonData> dataList)
     {
@@ -20,20 +19,19 @@ public class ImageReader
     }
     public String start()
     {
-        for(int i = 0; i < pokedex.size();i++)
+        for (PokemonData pokedex1 : pokedex)
         {
-            String pokename = CustomImageReader(pokemon,pokedex.get(i));
-            if(pokename != null) return pokename;
+            String pokename = CustomImageReader(pokemon, pokedex1);
+            if (pokename != null) return pokename;
         }
         return null;
     }
-    public static String CustomImageReader(BufferedImage unknownPokemon,PokemonData pokemonData)
+    private static String CustomImageReader(BufferedImage unknownPokemon, PokemonData pokemonData)
     {
-        int width1 = unknownPokemon.getWidth();
-        int height1 = unknownPokemon.getHeight();
         List<Integer> xlist = new ArrayList<>();
         List<Integer> ylist = new ArrayList<>();
-        for(int x = 0; x < 240;x += spaceSize)
+        int spaceSize = 40;
+        for(int x = 0; x < 240; x += spaceSize)
         {
             xlist.add(x);
             ylist.add(x);
