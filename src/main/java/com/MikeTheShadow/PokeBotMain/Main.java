@@ -116,6 +116,8 @@ class Main
         realisticCatch = MainPokeBotWindow.realisticCatch.isSelected();
         showOnlyWhiteListed = MainPokeBotWindow.ShowOnlyWhitelisted.isSelected();
         sendMessages = MainPokeBotWindow.sendMessages.isSelected();
+        TOKEN = MainPokeBotWindow.tokenBox.getText();
+        channelid = MainPokeBotWindow.tokenBox.getText();
         Properties properties = new Properties();
         properties.setProperty("CHANNELID",channelid);
         properties.setProperty("TOKEN",TOKEN);
