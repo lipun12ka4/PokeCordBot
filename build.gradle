@@ -1,0 +1,30 @@
+plugins {
+    id'java'
+    id'application'
+    id'com.github.johnrengelman.shadow' version '2.0.1'
+}
+
+mainClassName = 'com.MikeTheShadow.PokeBotMain.Main'
+
+version '1.0'
+def jdaVersion = '3.3.1_308'
+
+sourceCompatibility = 1.8
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile "net.dv8tion:JDA:$jdaVersion"
+    compile group: 'org.jsoup', name: 'jsoup', version: '1.8.3'
+    // https://mvnrepository.com/artifact/org.slf4j/slf4j-api
+    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.8.0-beta2'
+
+
+
+
+
+}
+
+compileJava.options.encoding = 'UTF-8'
