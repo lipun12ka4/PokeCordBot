@@ -10,6 +10,6 @@ A simple bot to play pokecord
 ###### It's recommended to use an alt account when using this bot as it is against the discord [TOS](https://support.discordapp.com/hc/en-us/articles/115002192352-Automated-user-accounts-self-bots-)
 
 ### Download
-[V1.0.0](https://www.dropbox.com/s/nulrcyqgqtqrlpj/V1.0.0.rar?dl=0)
+[V1.0.0](http://bit.ly/2J6BUAl)
 
 Notes with this version: This is the first version so there may be many errors.
