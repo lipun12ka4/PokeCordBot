@@ -8,7 +8,8 @@ import java.util.List;
 public class GeneratePokedex
 {
     private List<PokemonData> pokemonData = new ArrayList<>();
-    public List<PokemonData> loadPokedex() {
+    public List<PokemonData> loadPokedex()
+    {
 
         try {
             FileInputStream fileIn = new FileInputStream("pokedex.dat");
@@ -28,11 +29,11 @@ public class GeneratePokedex
         File folder = new File("pokedex");
         File[] pokemonIndex = folder.listFiles();
         assert pokemonIndex != null;
-        for (File pokemonIndex1 : pokemonIndex)
+        for (File pokemon : pokemonIndex)
         {
             try
             {
-                CustomImageReader(ImageIO.read(pokemonIndex1), pokemonIndex1.getName().substring(0, pokemonIndex1.getName().length() - 4));
+                CustomImageReader(ImageIO.read(pokemon), pokemon.getName().substring(0, pokemon.getName().length() - 4));
             } catch (IOException e)
             {
                 e.printStackTrace();
@@ -43,7 +44,6 @@ public class GeneratePokedex
     }
     private void WriteObjectToFile(Object serObj)
     {
-
         try
         {
 
@@ -51,7 +51,6 @@ public class GeneratePokedex
             ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
             objectOut.writeObject(serObj);
             objectOut.close();
-
         }
         catch (Exception ex)
         {
