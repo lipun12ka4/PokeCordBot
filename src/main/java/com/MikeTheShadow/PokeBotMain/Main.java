@@ -33,7 +33,6 @@ class Main
 
     static void Start() throws Exception
     {
-        
         //Load the user/legendary lists
         LoadLists();
         GenDex();
