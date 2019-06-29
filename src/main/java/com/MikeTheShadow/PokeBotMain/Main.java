@@ -51,7 +51,7 @@ class Main
             Main.Output("Dex created!");
         }
         pokemonData = genDex.loadPokedex();
-
+        Output("DEBUG: dex size = " + pokemonData.size());
     }
     static void Output(String output)
     {
