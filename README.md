@@ -9,8 +9,9 @@ A simple bot to play pokecord
 
 ## WARNING!!!
 I've been noticing some problems generating the dex file. Just a heads up if a pokemon is reported missing but the file is correct
+I increased dex accuracy hopefully that fixes bugs
 
 ### Download
-[V1.0.1](http://bit.ly/2RO51wg)
+[V1.0.2](https://www.dropbox.com/s/fp5l7u6hrx2bazt/V1.0.2.rar?dl=0)
 
-Notes with this version: Should function exactly as I expect it too lol.
+Notes with this version: There are problems with the dex file hopefully I don't have to revert to legacy method of finding should be working now
