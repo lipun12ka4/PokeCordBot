@@ -1,13 +1,44 @@
 package com.MikeTheShadow.PokeBotMain.Utils;
+
+import com.MikeTheShadow.PokeBotMain.Main;
+import com.MikeTheShadow.PokeBotMain.MainPokeBotWindow;
+
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GeneratePokedex
+public class GeneratePokedex implements Runnable
 {
+    private  Thread thread;
+    private String threadName;
     private List<PokemonData> pokemonData = new ArrayList<>();
+    public GeneratePokedex(String name)
+    {
+        this.threadName = name;
+    }
+    public void run()
+    {
+        File dex = new File("pokedex.dat");
+        if(!dex.exists())
+        {
+            Main.Output("Dex does not exist generating...");
+            generateNewDex();
+            Main.Output("Dex created!");
+        }
+        pokemonData = loadPokedex();
+        Main.Output("DEBUG: dex size = " + pokemonData.size());
+        Main.StartMainThread();
+    }
+    public void start()
+    {
+        if(thread == null)
+        {
+            thread = new Thread(this,threadName);
+            thread.start();
+        }
+    }
     public List<PokemonData> loadPokedex()
     {
 
@@ -24,22 +55,26 @@ public class GeneratePokedex
         }
         return this.pokemonData;
     }
-    public void start()
+    public void generateNewDex()
     {
         File folder = new File("pokedex");
         File[] pokemonIndex = folder.listFiles();
         assert pokemonIndex != null;
+
+        MainPokeBotWindow.pokemonLoadingBar.setMaximum(pokemonIndex.length);
+        MainPokeBotWindow.pokemonLoadingBar.setValue(0);
         for (File pokemon : pokemonIndex)
         {
             try
             {
-                //typenull
                 String pokename = pokemon.getName().substring(0, pokemon.getName().length() - 4).toLowerCase();
+                MainPokeBotWindow.loadImagelabel.setText("Loading image: " + pokename);
                 if(pokename.equals("typenull"))
                 {
                     pokename = "type: null";
                 }
                 CustomImageReader(ImageIO.read(pokemon), pokename);
+                MainPokeBotWindow.pokemonLoadingBar.setValue(MainPokeBotWindow.pokemonLoadingBar.getValue() + 1);
             } catch (IOException e)
             {
                 e.printStackTrace();

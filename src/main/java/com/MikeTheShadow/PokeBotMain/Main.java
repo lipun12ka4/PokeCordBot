@@ -6,11 +6,13 @@ import net.dv8tion.jda.api.AccountType;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.TextChannel;
+
+import javax.security.auth.login.LoginException;
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-class Main
+public class Main
 {
     static JDA api;
     static List<String> whitelist = new ArrayList<>();
@@ -31,35 +33,34 @@ class Main
     //restart booleans etc
     static boolean restarting = false;
 
-    static void Start() throws Exception
+    static void Start()
     {
         //Load the user/legendary lists
         LoadLists();
-        GenDex();
-        api = new JDABuilder(AccountType.CLIENT).setToken(TOKEN).build();
-        api.addEventListener(new Listener());
+        GeneratePokedex genDex = new GeneratePokedex("genDex");
+        genDex.start();
     }
-    private static void GenDex()
+    public static void StartMainThread()
     {
-        GeneratePokedex genDex = new GeneratePokedex();
-        File dex = new File("pokedex.dat");
-        if(!dex.exists())
+        try
         {
-            Main.Output("Dex does not exist generating...");
-            genDex.start();
-            Main.Output("Dex created!");
+            api = new JDABuilder(AccountType.CLIENT).setToken(TOKEN).build();
+            api.addEventListener(new Listener());
         }
-        pokemonData = genDex.loadPokedex();
-        Output("DEBUG: dex size = " + pokemonData.size());
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
     }
-    static void Output(String output)
+    public static void Output(String output)
     {
         Calendar cal = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
         MainPokeBotWindow.output.add(sdf.format(cal.getTime()) + ": " + output);
     }
 
-    static boolean LoadSetup() throws Exception
+    public static boolean LoadSetup() throws Exception
     {
         Main.Output("Loading properties file...");
         Properties properties = new Properties();

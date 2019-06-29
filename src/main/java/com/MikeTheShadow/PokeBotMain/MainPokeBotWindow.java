@@ -2,16 +2,11 @@ package com.MikeTheShadow.PokeBotMain;
 
 import java.awt.EventQueue;
 
-import javax.swing.JFrame;
+import javax.swing.*;
 import java.awt.List;
-import javax.swing.JTabbedPane;
-import javax.swing.JDesktopPane;
 import java.awt.Color;
 import java.awt.Button;
 import java.awt.Font;
-import javax.swing.JCheckBox;
-import javax.swing.JTextField;
-import javax.swing.JLabel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
@@ -28,8 +23,9 @@ public class MainPokeBotWindow
     static JCheckBox ShowOnlyWhitelisted;
     static JTextField SpamBox;
     static JTextField channelBox,tokenBox;
-
+    public static JProgressBar pokemonLoadingBar;
     private JFrame frmPokecordmain;
+    public static JLabel loadImagelabel;
     static List output;
     /**
      * Launch the application.
@@ -99,14 +95,20 @@ public class MainPokeBotWindow
                 {
                     //TODO find the error that gets thrown here and call the restart func
                     e.printStackTrace();
-                    System.out.println("Still trying");
-                    //System.out.println("restarting...");
-                    //Restart restartThread = new Restart("restartThread");
-                    //restartThread.run();
+                    Main.Output("Program crashed restart");
                 }
 
             }
         });
+
+        //Loading bar to load data
+        pokemonLoadingBar = new JProgressBar();
+        pokemonLoadingBar.setBounds(575, 571, 195, 27);
+        PokeCordMainTab.add(pokemonLoadingBar);
+        //loading bar label
+        loadImagelabel = new JLabel("Loading image:");
+        loadImagelabel.setBounds(575, 546, 200, 14);
+        PokeCordMainTab.add(loadImagelabel);
 
         JLabel lblPokebot = new JLabel("PokeBot 1.0");
         lblPokebot.setFont(new Font("Tahoma", Font.PLAIN, 51));
@@ -197,7 +199,6 @@ public class MainPokeBotWindow
         JLabel lblToken = new JLabel("TOKEN");
         lblToken.setBounds(6, 86, 73, 14);
         SettingsTab.add(lblToken);
-
         //Load setup
         try
         {
