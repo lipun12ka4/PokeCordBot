@@ -95,7 +95,7 @@ public class MainPokeBotWindow
                 {
                     //TODO find the error that gets thrown here and call the restart func
                     e.printStackTrace();
-                    Main.Output("Program crashed restart");
+                    Main.Output("Program crashed!");
                 }
 
             }
