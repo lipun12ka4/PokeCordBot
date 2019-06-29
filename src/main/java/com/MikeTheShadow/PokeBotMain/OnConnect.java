@@ -21,7 +21,6 @@ public class OnConnect implements Runnable
     }
     public void run()
     {
-        //noinspection InfiniteLoopStatement
         while(true)
         {
             try
