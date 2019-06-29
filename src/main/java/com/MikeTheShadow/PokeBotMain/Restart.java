@@ -1,7 +1,6 @@
 package com.MikeTheShadow.PokeBotMain;
-import net.dv8tion.jda.core.AccountType;
-import net.dv8tion.jda.core.JDABuilder;
-
+import net.dv8tion.jda.api.AccountType;
+import net.dv8tion.jda.api.JDABuilder;
 import java.util.Random;
 
 public class Restart implements Runnable
@@ -31,7 +30,7 @@ public class Restart implements Runnable
                 Main.Output("Restarting bot please wait...");
                 Main.restarting = true;
                 Main.api.shutdown();
-                Main.api = new JDABuilder(AccountType.CLIENT).setToken(Main.TOKEN).buildAsync();
+                Main.api = new JDABuilder(AccountType.CLIENT).setToken(Main.TOKEN).build();
                 Main.api.addEventListener(new Listener());
                 Main.Output("Restart complete!");
                 Main.restarting = false;

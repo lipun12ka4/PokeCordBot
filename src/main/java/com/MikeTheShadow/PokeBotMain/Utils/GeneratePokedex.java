@@ -33,7 +33,13 @@ public class GeneratePokedex
         {
             try
             {
-                CustomImageReader(ImageIO.read(pokemon), pokemon.getName().substring(0, pokemon.getName().length() - 4));
+                //typenull
+                String pokename = pokemon.getName().substring(0, pokemon.getName().length() - 4).toLowerCase();
+                if(pokename.equals("typenull"))
+                {
+                    pokename = "type: null";
+                }
+                CustomImageReader(ImageIO.read(pokemon), pokename);
             } catch (IOException e)
             {
                 e.printStackTrace();

@@ -124,7 +124,7 @@ public class MainPokeBotWindow
             @Override
             public void mousePressed(MouseEvent e)
             {
-                Main.api.shutdownNow();
+                //Main.api.();
                 output.add("Shutting down...");
                 StartButton.setEnabled(true);
             }

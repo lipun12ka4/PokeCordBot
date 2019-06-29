@@ -1,6 +1,6 @@
 package com.MikeTheShadow.PokeBotMain;
 import com.MikeTheShadow.PokeBotMain.Utils.ImageReader;
-import net.dv8tion.jda.core.entities.MessageChannel;
+import net.dv8tion.jda.api.entities.TextChannel;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -13,9 +13,9 @@ public class PokeSolverThread implements Runnable
 {
     private  Thread thread;
     private String threadName;
-    private MessageChannel channel;
+    private TextChannel channel;
     private BufferedImage imageToRead;
-    PokeSolverThread(String name,MessageChannel chan,BufferedImage image)
+    PokeSolverThread(String name, TextChannel chan, BufferedImage image)
     {
         this.channel = chan;
         threadName = name;

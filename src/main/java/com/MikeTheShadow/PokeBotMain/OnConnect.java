@@ -1,5 +1,5 @@
 package com.MikeTheShadow.PokeBotMain;
-import net.dv8tion.jda.core.entities.MessageChannel;
+import net.dv8tion.jda.api.entities.TextChannel;
 import java.util.Random;
 
 
@@ -12,9 +12,9 @@ public class OnConnect implements Runnable
     //try threading
     private  Thread thread;
     private String threadName;
-    private MessageChannel channel;
+    private TextChannel channel;
 
-    OnConnect(String name,MessageChannel chan)
+    OnConnect(String name, TextChannel chan)
     {
         this.channel = chan;
         threadName = name;

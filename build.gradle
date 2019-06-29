@@ -7,7 +7,7 @@ plugins {
 mainClassName = 'com.MikeTheShadow.PokeBotMain.MainPokeBotWindow'
 
 version '1.0'
-def jdaVersion = '3.3.1_308'
+def jdaVersion = '4.BETA.0_14'
 
 sourceCompatibility = 1.8
 

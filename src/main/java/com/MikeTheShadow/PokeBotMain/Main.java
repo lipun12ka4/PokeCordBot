@@ -2,10 +2,10 @@ package com.MikeTheShadow.PokeBotMain;
 
 import com.MikeTheShadow.PokeBotMain.Utils.GeneratePokedex;
 import com.MikeTheShadow.PokeBotMain.Utils.PokemonData;
-import net.dv8tion.jda.core.AccountType;
-import net.dv8tion.jda.core.JDA;
-import net.dv8tion.jda.core.JDABuilder;
-import net.dv8tion.jda.core.entities.TextChannel;
+import net.dv8tion.jda.api.AccountType;
+import net.dv8tion.jda.api.JDA;
+import net.dv8tion.jda.api.JDABuilder;
+import net.dv8tion.jda.api.entities.TextChannel;
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -37,7 +37,7 @@ class Main
         //Load the user/legendary lists
         LoadLists();
         GenDex();
-        api = new JDABuilder(AccountType.CLIENT).setToken(TOKEN).buildAsync();
+        api = new JDABuilder(AccountType.CLIENT).setToken(TOKEN).build();
         api.addEventListener(new Listener());
     }
     private static void GenDex()
