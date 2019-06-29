@@ -13,4 +13,4 @@ I've been noticing some problems generating the dex file. Just a heads up if a p
 ### Download
 [V1.0.1](http://bit.ly/2RO51wg)
 
-Notes with this version: This is the first version so there may be many errors.
+Notes with this version: Should function exactly as I expect it too lol.
