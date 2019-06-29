@@ -30,7 +30,7 @@ public class ImageReader
     {
         List<Integer> xlist = new ArrayList<>();
         List<Integer> ylist = new ArrayList<>();
-        int spaceSize = 40;
+        int spaceSize = 35;
         for(int x = 0; x < 240; x += spaceSize)
         {
             xlist.add(x);

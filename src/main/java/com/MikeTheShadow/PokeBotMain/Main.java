@@ -48,8 +48,10 @@ class Main
         {
             Main.Output("Dex does not exist generating...");
             genDex.start();
+            Main.Output("Dex created!");
         }
         pokemonData = genDex.loadPokedex();
+
     }
     static void Output(String output)
     {
@@ -72,6 +74,7 @@ class Main
         properties.load(inStream);
         try
         {
+            CHARACTER = properties.getProperty("CHARACTER");
             channelid = properties.getProperty("CHANNELID");
             TOKEN = properties.getProperty("TOKEN");
             sendMessages = Boolean.parseBoolean(properties.getProperty("SENDMESSAGES").toLowerCase());
@@ -84,6 +87,7 @@ class Main
             if(TOKEN == null || TOKEN.length() < 5)return false;
             MainPokeBotWindow.tokenBox.setText(TOKEN);
             MainPokeBotWindow.channelBox.setText(channelid);
+            MainPokeBotWindow.SpamBox.setText(CHARACTER);
             MainPokeBotWindow.load();
             Main.Output("Complete!");
         }
@@ -118,6 +122,7 @@ class Main
         sendMessages = MainPokeBotWindow.sendMessages.isSelected();
         TOKEN = MainPokeBotWindow.tokenBox.getText();
         channelid = MainPokeBotWindow.channelBox.getText();
+        CHARACTER = MainPokeBotWindow.SpamBox.getText();
         Properties properties = new Properties();
         properties.setProperty("CHANNELID",channelid);
         properties.setProperty("TOKEN",TOKEN);
