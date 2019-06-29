@@ -7,11 +7,20 @@ A simple bot to play pokecord
 3. To get your Token go [here](https://discordhelp.net/discord-token)
 4. To get your channel ID follow this guide [here](https://support.discordapp.com/hc/en-us/articles/206346498-Where-can-I-find-my-User-Server-Message-ID-)
 
-## WARNING!!!
-I've been noticing some problems generating the dex file. Just a heads up if a pokemon is reported missing but the file is correct
-I increased dex accuracy hopefully that fixes bugs
 
 ### Download
-[V1.0.2](https://www.dropbox.com/s/fp5l7u6hrx2bazt/V1.0.2.rar?dl=0)
+[V1.0.3](https://www.dropbox.com/s/hzbiqlb7lo1bmco/V1.0.3.rar?dl=0)
 
-Notes with this version: There are problems with the dex file hopefully I don't have to revert to legacy method of finding should be working now
+
+###### Changelog
+
+1. Updated JDA library to fix bugs found in issue #19
+2. Added more pokemon fixed type: null implimentation
+3. Other minor fixes
+
+
+###### Upcoming features
+
+1. Next update will likely include a loading bar to see the progress of the pokedex.dat file and show how many pokemon its loaded to memory
+2. Ability to index pokemon? This might be a bit tedious of a process will consider
+3. Catch duplicates on/off most bots have it why can't the best bot in the business have it too?
