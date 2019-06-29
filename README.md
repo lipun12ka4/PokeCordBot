@@ -9,7 +9,7 @@ A simple bot to play pokecord
 
 
 ### Download
-[V1.0.3](https://www.dropbox.com/s/hzbiqlb7lo1bmco/V1.0.3.rar?dl=0)
+[V1.0.3](http://bit.ly/2IXbLoH)
 
 
 ###### Changelog
