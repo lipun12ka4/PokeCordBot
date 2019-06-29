@@ -8,13 +8,11 @@ A simple bot to play pokecord
 4. To get your channel ID follow this guide [here](https://support.discordapp.com/hc/en-us/articles/206346498-Where-can-I-find-my-User-Server-Message-ID-)
 
 ## WARNING!!!
-current version bug! when it generates the properties file make sure to edit it and change the character to something like , or p
-will be fixed soon
-also manually add the token/channelID to the properties file too until futher notice
+I've been noticing some problems generating the dex file. Just a heads up if a pokemon is reported missing but the file is correct
 
 ###### It's recommended to use an alt account when using this bot as it is against the discord [TOS](https://support.discordapp.com/hc/en-us/articles/115002192352-Automated-user-accounts-self-bots-)
 
 ### Download
-[V1.0.0](http://bit.ly/2J6BUAl)
+[V1.0.1](http://bit.ly/2RO51wg)
 
 Notes with this version: This is the first version so there may be many errors.
