@@ -10,8 +10,6 @@ A simple bot to play pokecord
 ## WARNING!!!
 I've been noticing some problems generating the dex file. Just a heads up if a pokemon is reported missing but the file is correct
 
-###### It's recommended to use an alt account when using this bot as it is against the discord [TOS](https://support.discordapp.com/hc/en-us/articles/115002192352-Automated-user-accounts-self-bots-)
-
 ### Download
 [V1.0.1](http://bit.ly/2RO51wg)
 
