@@ -5,8 +5,9 @@ import net.dv8tion.jda.api.entities.TextChannel;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.net.URL;
 import java.util.Random;
 
 public class PokeSolverThread implements Runnable
@@ -15,11 +16,14 @@ public class PokeSolverThread implements Runnable
     private String threadName;
     private TextChannel channel;
     private BufferedImage imageToRead;
-    PokeSolverThread(String name, TextChannel chan, BufferedImage image)
+    private URL pokemonURL;
+    PokeSolverThread(String name, TextChannel chan,URL url) throws IOException
     {
+        BufferedImage image = ImageIO.read(url);
         this.channel = chan;
         threadName = name;
         this.imageToRead = image;
+        this.pokemonURL = url;
     }
     public void run()
     {
@@ -63,39 +67,21 @@ public class PokeSolverThread implements Runnable
         //Basically if a pokemon can't be found
         catch (Exception e)
         {
-            BufferedImage bi = this.imageToRead;
-            Random random = new Random(1520921095);
-            File output = new File("unknown/" + random.nextInt(1000000)+".jpg");
-            Main.Output("Unknown pokemon error!");
-            try
-            {
-                if(!output.createNewFile())return;
-            } catch (IOException e1)
-            {
-                e1.printStackTrace();
-            }
-            try
-            {
-                ImageIO.write(bi,"jpg",output);
-            }
-            catch (IOException exception)
-            {
-                Main.Output("Error saving image to file!\n" + exception.getMessage());
-            }
+                writeToFile();
         }
     }
     private void writeToFile()
     {
-        BufferedImage bi = this.imageToRead;
         Random random = new Random(1520921095);
-        File output = new File("Unknownpokemon/" + random.nextInt(1000000)+".jpg");
         try
         {
-            ImageIO.write(bi,"jpg",output);
+            FileWriter fw = new FileWriter("Unknownpokemon/id" + random.nextInt(1000000)+".txt");
+            fw.write(pokemonURL.getFile());
+            fw.close();
         }
-        catch (IOException exception)
+        catch(Exception e)
         {
-            Main.Output("Error saving image to file!\n" + exception.getMessage());
+            Main.Output("Error saving image to file!\n" + e.getMessage());
         }
     }
 

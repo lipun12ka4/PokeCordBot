@@ -42,7 +42,6 @@ public class ImageReader
             for (int x = 0; x < ylist.size(); x++)
             {
                 int rgbA = unknownPokemon.getRGB(xlist.get(x), ylist.get(y));
-                //int rgbB = knownPokemon.getRGB(xlist.get(x), ylist.get(y));
                 int rgbB = pokemonData.getColorData()[x][y];
                 int redA = (rgbA >> 16) & 0xff;
                 int greenA = (rgbA >> 8) & 0xff;

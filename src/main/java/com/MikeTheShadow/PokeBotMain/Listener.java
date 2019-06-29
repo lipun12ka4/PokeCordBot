@@ -20,7 +20,6 @@ public class Listener extends ListenerAdapter
         if(!msg.getAuthor().isBot() || !msg.getAuthor().getId().equals("365975655608745985") || msg.getChannel().getType() == ChannelType.PRIVATE)return;
 
         if(msg.getMessage().getEmbeds().size() < 1) return;
-
         try
         {
             if(msg.getMessage().getEmbeds().get(0).getDescription().contains(" is now"))
@@ -38,20 +37,9 @@ public class Listener extends ListenerAdapter
             {
                 MessageEmbed embed = msg.getMessage().getEmbeds().get(0);
                 System.setProperty("http.agent", "Chrome");
+                //get and send the url to the thread
                 URL url = new URL(embed.getImage().getUrl());
-                /*
-                InputStream in = new BufferedInputStream(url.openStream());
-                OutputStream out = new BufferedOutputStream(new FileOutputStream("tempfiles/temp" + storageInt + ".jpg"));
-                for ( int i; (i = in.read()) != -1; )
-                {
-                    out.write(i);
-                }
-                in.close();
-                out.close();
-                */
-                BufferedImage image = ImageIO.read(url);
-                //storageInt++;
-                PokeSolverThread solve = new PokeSolverThread("PokeThread",msg.getTextChannel(),image);
+                PokeSolverThread solve = new PokeSolverThread("PokeThread",msg.getTextChannel(),url);
                 solve.start();
             }
             catch (IOException e)
