@@ -28,12 +28,12 @@ public class Restart implements Runnable
 
                 Thread.sleep(3400000 + new Random().nextInt(200000));
                 Main.Output("Restarting bot please wait...");
-                Main.restarting = true;
+                Main.stopped = true;
                 Main.api.shutdown();
                 Main.api = new JDABuilder(AccountType.CLIENT).setToken(Main.TOKEN).build();
                 Main.api.addEventListener(new Listener());
                 Main.Output("Restart complete!");
-                Main.restarting = false;
+                Main.stopped = false;
                 break;
             }
             catch (Exception e)

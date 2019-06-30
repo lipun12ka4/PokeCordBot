@@ -7,7 +7,6 @@ import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.TextChannel;
 
-import javax.security.auth.login.LoginException;
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -33,7 +32,7 @@ public class Main
     public static int spacing = 35;
 
     //restart booleans etc
-    static boolean restarting = false;
+    static boolean stopped = false;
 
     static void Start()
     {

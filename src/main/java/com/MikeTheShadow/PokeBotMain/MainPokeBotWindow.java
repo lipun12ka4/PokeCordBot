@@ -85,6 +85,7 @@ public class MainPokeBotWindow
             {
                 try
                 {
+                    Main.stopped = false;
                     StartButton.setEnabled(false);
                     Main.SaveProperties();
                     output.add("Bot started!");
@@ -127,6 +128,7 @@ public class MainPokeBotWindow
             public void mousePressed(MouseEvent e)
             {
                 Main.api.removeEventListener(new Listener());
+                Main.stopped = true;
                 Main.api.shutdownNow();
                 output.add("Shutting down...");
                 StartButton.setEnabled(true);
