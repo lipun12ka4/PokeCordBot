@@ -9,18 +9,18 @@ A simple bot to play pokecord
 
 
 ### Download
-[V1.0.3](http://bit.ly/2IXbLoH)
+[V1.0.4](http://bit.ly/302chXZ)
 
 
 ###### Changelog
-
-1. Updated JDA library to fix bugs found in issue #19
-2. Added more pokemon fixed type: null implimentation
-3. Other minor fixes
+1. Fixed a bug causing an error to loop and maybe causing cpu lag (needs more long term testing)
+2. Added a loading bar to see the pokemon load in realtime (idk it looks cool)
+3. Fixed a bug that was causing pokemon to be undiscovered
+4. Changed how unknown pokemon works the code is cleaner and it will instead give a url to the image instead of the image itself
+5. Other small QOL fixes
 
 
 ###### Upcoming features
-
-1. Next update will likely include a loading bar to see the progress of the pokedex.dat file and show how many pokemon its loaded to memory
-2. Ability to index pokemon? This might be a bit tedious of a process will consider
-3. Catch duplicates on/off most bots have it why can't the best bot in the business have it too?
+Considered? Add a cpu/ram/HDD monitoring system to monitor system resources in use.
+1. Ability to index pokemon? This might be a bit tedious of a process will consider it.
+2. Catch duplicates on/off most bots have it why can't the best bot in the business have it too?
