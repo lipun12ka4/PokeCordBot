@@ -13,7 +13,6 @@ public class GeneratePokedex implements Runnable
 {
     private  Thread thread;
     private String threadName;
-    private List<PokemonData> pokemonData = new ArrayList<>();
     public GeneratePokedex(String name)
     {
         this.threadName = name;
@@ -27,8 +26,8 @@ public class GeneratePokedex implements Runnable
             generateNewDex();
             Main.Output("Dex created!");
         }
-        pokemonData = loadPokedex();
-        Main.Output("DEBUG: dex size = " + pokemonData.size());
+        Main.pokemonData = loadPokedex();
+        MainPokeBotWindow.loadImagelabel.setText("Complete!");
         Main.StartMainThread();
     }
     public void start()
@@ -47,13 +46,13 @@ public class GeneratePokedex implements Runnable
             ObjectInputStream objectIn = new ObjectInputStream(fileIn);
             Object obj = objectIn.readObject();
             objectIn.close();
-            pokemonData = (List<PokemonData>) obj;
+            Main.pokemonData = (List<PokemonData>) obj;
             System.out.println("pokedex loaded to memory!");
 
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        return this.pokemonData;
+        return Main.pokemonData;
     }
     public void generateNewDex()
     {
@@ -80,7 +79,7 @@ public class GeneratePokedex implements Runnable
                 e.printStackTrace();
             }
         }
-        WriteObjectToFile(pokemonData);
+        WriteObjectToFile(Main.pokemonData);
         System.out.println("New pokedex generated");
     }
     private void WriteObjectToFile(Object serObj)
@@ -102,8 +101,7 @@ public class GeneratePokedex implements Runnable
     {
         List<Integer> xlist = new ArrayList<>();
         List<Integer> ylist = new ArrayList<>();
-        int spaceSize = 35;
-        for(int x = 0; x < 240; x += spaceSize)
+        for(int x = 0; x < 240; x += Main.spacing)
         {
             xlist.add(x);
             ylist.add(x);
@@ -117,7 +115,8 @@ public class GeneratePokedex implements Runnable
                 storageInts[x][y] = rgbB;
             }
         }
-        pokemonData.add(new PokemonData(pokemonName,storageInts));
+        Main.pokemonData.add(new PokemonData(pokemonName,storageInts));
+        System.out.println(pokemonName);
     }
 
 

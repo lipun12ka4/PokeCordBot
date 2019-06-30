@@ -39,7 +39,8 @@ public class Listener extends ListenerAdapter
                 System.setProperty("http.agent", "Chrome");
                 //get and send the url to the thread
                 URL url = new URL(embed.getImage().getUrl());
-                PokeSolverThread solve = new PokeSolverThread("PokeThread",msg.getTextChannel(),url);
+                BufferedImage image = ImageIO.read(url);
+                PokeSolverThread solve = new PokeSolverThread("PokeThread",msg.getTextChannel(),image,url);
                 solve.start();
             }
             catch (IOException e)
@@ -65,8 +66,6 @@ public class Listener extends ListenerAdapter
             Main.Output("Setting channel to: " + Main.CHANNEL.getName());
             OnConnect newThread = new OnConnect("MessageThread",Main.CHANNEL);
             newThread.start();
-            //Restart restartThread = new Restart("restartThread");
-            //restartThread.run();
         }
     }
 

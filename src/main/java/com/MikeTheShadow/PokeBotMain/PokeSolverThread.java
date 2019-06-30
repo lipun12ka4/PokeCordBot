@@ -17,9 +17,8 @@ public class PokeSolverThread implements Runnable
     private TextChannel channel;
     private BufferedImage imageToRead;
     private URL pokemonURL;
-    PokeSolverThread(String name, TextChannel chan,URL url) throws IOException
+    PokeSolverThread(String name, TextChannel chan,BufferedImage image,URL url) throws IOException
     {
-        BufferedImage image = ImageIO.read(url);
         this.channel = chan;
         threadName = name;
         this.imageToRead = image;
@@ -29,6 +28,7 @@ public class PokeSolverThread implements Runnable
     {
         try
         {
+            Main.Output("DEBUG: dex size = " + Main.pokemonData.size());
             //Index all the pokemon into an array
             File folder = new File("pokedex");
             File[] pokemonIndex = folder.listFiles();
@@ -75,13 +75,16 @@ public class PokeSolverThread implements Runnable
         Random random = new Random(1520921095);
         try
         {
-            FileWriter fw = new FileWriter("Unknownpokemon/id" + random.nextInt(1000000)+".txt");
+            String filename = "Unknown/id" + random.nextInt(1000000)+".txt";
+            File file = new File(filename);
+            file.createNewFile();
+            FileWriter fw = new FileWriter(filename);
             fw.write(pokemonURL.getFile());
             fw.close();
         }
         catch(Exception e)
         {
-            Main.Output("Error saving image to file!\n" + e.getMessage());
+            Main.Output(e.getMessage());
         }
     }
 

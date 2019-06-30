@@ -1,5 +1,7 @@
 package com.MikeTheShadow.PokeBotMain.Utils;
 
+import com.MikeTheShadow.PokeBotMain.Main;
+
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,8 +32,7 @@ public class ImageReader
     {
         List<Integer> xlist = new ArrayList<>();
         List<Integer> ylist = new ArrayList<>();
-        int spaceSize = 35;
-        for(int x = 0; x < 240; x += spaceSize)
+        for(int x = 0; x < 240; x += Main.spacing)
         {
             xlist.add(x);
             ylist.add(x);

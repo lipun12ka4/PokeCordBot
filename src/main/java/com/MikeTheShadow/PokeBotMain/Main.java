@@ -27,8 +27,10 @@ public class Main
     static boolean realisticCatch = true;
     static boolean showOnlyWhiteListed = false;
     //New pokemon data much lighter and way more efficient
-    static List<PokemonData> pokemonData = new ArrayList<>();
+    public static List<PokemonData> pokemonData = new ArrayList<>();
 
+    //use this to change the image spacing size
+    public static int spacing = 35;
 
     //restart booleans etc
     static boolean restarting = false;
