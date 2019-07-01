@@ -28,7 +28,6 @@ public class PokeSolverThread implements Runnable
     {
         try
         {
-            Main.Output("DEBUG: dex size = " + Main.pokemonData.size());
             //Index all the pokemon into an array
             File folder = new File("pokedex");
             File[] pokemonIndex = folder.listFiles();

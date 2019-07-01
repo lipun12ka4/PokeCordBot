@@ -94,7 +94,7 @@ public class MainPokeBotWindow
                 }
                 catch(Exception e)
                 {
-                    //TODO find the error that gets thrown here and call the restart func
+                    //Should be no error here?
                     e.printStackTrace();
                     Main.Output("Program crashed!");
                 }
