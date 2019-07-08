@@ -9,18 +9,16 @@ A simple bot to play pokecord
 
 
 ### Download
-[V1.0.4](https://www.dropbox.com/s/gf92vv8gk0dsgye/V1.0.4.rar?dl=0)
+Warning! If you are using an older version 1.0.5 requires that you add a PREFIX= to your settings file or allow the program to generate a new one and copy paste your settings over to avoid possible issues.
+
+[V1.0.5](http://bit.ly/2Jkrleo)
 
 
 ###### Changelog
-1. Fixed a bug causing an error to loop and maybe causing cpu lag (needs more long term testing)
-2. Added a loading bar to see the pokemon load in realtime (idk it looks cool)
-3. Fixed a bug that was causing pokemon to be undiscovered
-4. Changed how unknown pokemon works the code is cleaner and it will instead give a url to the image instead of the image itself
-5. Other small QOL fixes
+1. Added the ability to change prefix.
 
 
 ###### Upcoming features
-Considered? Add a cpu/ram/HDD monitoring system to monitor system resources in use.
-1. Ability to index pokemon? This might be a bit tedious of a process will consider it.
-2. Catch duplicates on/off most bots have it why can't the best bot in the business have it too?
+0.1. Ability to index pokemon? This might be a bit tedious of a process will consider it.
+1. Catch duplicates on/off most bots have it why can't the best bot in the business have it too?
+2. A timeout feature. IE only runs for a certain period of time before shutting down.
