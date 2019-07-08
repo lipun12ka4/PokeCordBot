@@ -10,6 +10,7 @@ A simple bot to play pokecord
 
 ### Download
 Warning! If you are using an older version 1.0.5 requires that you add a PREFIX= to your settings file or allow the program to generate a new one and copy paste your settings over to avoid possible issues.
+
 [V1.0.5](http://bit.ly/2Jkrleo)
 
 
