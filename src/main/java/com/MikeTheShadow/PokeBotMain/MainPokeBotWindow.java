@@ -21,8 +21,9 @@ public class MainPokeBotWindow
     static JCheckBox CatchEverything;
     static JCheckBox realisticCatch;
     static JCheckBox ShowOnlyWhitelisted;
+
     static JTextField SpamBox;
-    static JTextField channelBox,tokenBox;
+    static JTextField channelBox,tokenBox,prefixBox;
     public static JProgressBar pokemonLoadingBar;
     private JFrame frmPokecordmain;
     public static JLabel loadImagelabel;
@@ -172,8 +173,18 @@ public class MainPokeBotWindow
         ShowOnlyWhitelisted.setBounds(6, 262, 169, 23);
         SettingsTab.add(ShowOnlyWhitelisted);
 
+
+        JLabel prefixLbl = new JLabel("PREFIX");
+        prefixLbl.setBounds(6, 45, 90, 14);
+        SettingsTab.add(prefixLbl);
+
+        prefixBox = new JTextField();
+        prefixBox.setBounds(89, 40, 86, 20);
+        SettingsTab.add(prefixBox);
+        prefixBox.setColumns(10);
+
         tokenBox = new JTextField();
-        tokenBox.setBounds(89, 83, 86, 20);
+        tokenBox.setBounds(89, 80, 86, 20);
         SettingsTab.add(tokenBox);
         tokenBox.setColumns(10);
 
@@ -183,7 +194,7 @@ public class MainPokeBotWindow
         SpamBox.setColumns(10);
 
         JLabel lblSpamChar = new JLabel("SPAM CHAR");
-        lblSpamChar.setBounds(6, 61, 90, 14);
+        lblSpamChar.setBounds(6, 65, 90, 14);
         SettingsTab.add(lblSpamChar);
 
         JLabel lblNotRecommendedEspecially = new JLabel("Not recommended especially if you're in public discords with this account");

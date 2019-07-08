@@ -18,6 +18,7 @@ public class Main
     static TextChannel CHANNEL = null;
     static String TOKEN = null;
     static String CHARACTER = ".";
+    static String PREFIX = "p!";
     static String channelid = null;
     static boolean sendMessages = true;
     static boolean catchOnlyWhiteListed = false;
@@ -75,6 +76,7 @@ public class Main
         properties.load(inStream);
         try
         {
+            PREFIX = properties.getProperty("PREFIX");
             CHARACTER = properties.getProperty("CHARACTER");
             channelid = properties.getProperty("CHANNELID");
             TOKEN = properties.getProperty("TOKEN");
@@ -89,6 +91,7 @@ public class Main
             MainPokeBotWindow.tokenBox.setText(TOKEN);
             MainPokeBotWindow.channelBox.setText(channelid);
             MainPokeBotWindow.SpamBox.setText(CHARACTER);
+            MainPokeBotWindow.prefixBox.setText(PREFIX);
             MainPokeBotWindow.load();
             Main.Output("Complete!");
         }
@@ -111,6 +114,7 @@ public class Main
         properties.setProperty("SHOWONLYWHITELIST","false");
         properties.setProperty("SENDMESSAGES","false");
         properties.setProperty("CHARACTER","putcharhere");
+        properties.setProperty("PREFIX","p!");
         properties.store(new FileOutputStream("pokebot.properties"),null);
     }
     static void SaveProperties()
@@ -124,6 +128,7 @@ public class Main
         TOKEN = MainPokeBotWindow.tokenBox.getText();
         channelid = MainPokeBotWindow.channelBox.getText();
         CHARACTER = MainPokeBotWindow.SpamBox.getText();
+        PREFIX = MainPokeBotWindow.prefixBox.getText();
         Properties properties = new Properties();
         properties.setProperty("CHANNELID",channelid);
         properties.setProperty("TOKEN",TOKEN);

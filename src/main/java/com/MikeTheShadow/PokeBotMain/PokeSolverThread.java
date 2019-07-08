@@ -90,7 +90,7 @@ public class PokeSolverThread implements Runnable
     private void sendCatchMessage(String pokemonName)
     {
         channel.sendTyping().complete();
-        channel.sendMessage("p!catch " + pokemonName).complete();
+        channel.sendMessage(Main.PREFIX + "catch " + pokemonName).complete();
         if(Main.showOnlyWhiteListed)
         {
             if(Main.whitelist.contains(pokemonName.toLowerCase()))Main.Output("Found a " + pokemonName + "!");

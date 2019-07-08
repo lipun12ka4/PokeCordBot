@@ -18,7 +18,6 @@ public class Listener extends ListenerAdapter
     public void onMessageReceived(MessageReceivedEvent msg)
     {
         if(!msg.getAuthor().isBot() || !msg.getAuthor().getId().equals("365975655608745985") || msg.getChannel().getType() == ChannelType.PRIVATE)return;
-
         if(msg.getMessage().getEmbeds().size() < 1) return;
         try
         {
@@ -31,7 +30,7 @@ public class Listener extends ListenerAdapter
         {
             return;
         }
-        if(msg.getMessage().getEmbeds().get(0).getDescription().contains("Guess the pokémon and type p!catch <pokémon> to catch it!"))
+        if(msg.getMessage().getEmbeds().get(0).getDescription().contains("Guess the pokémon and type"))
         {
             try
             {
