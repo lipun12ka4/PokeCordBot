@@ -26,6 +26,8 @@ public class Main
     static boolean catchEverythingEverywhere = false;
     static boolean realisticCatch = true;
     static boolean showOnlyWhiteListed = false;
+    //version checking
+    public static final String VERSION = "1.1.0";
     //New pokemon data much lighter and way more efficient
     public static List<PokemonData> pokemonData = new ArrayList<>();
 
