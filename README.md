@@ -9,16 +9,13 @@ A simple bot to play pokecord
 
 
 ### Download
-Warning! If you are using an older version 1.0.5 requires that you add a PREFIX= to your settings file or allow the program to generate a new one and copy paste your settings over to avoid possible issues.
-
-[V1.0.5](http://bit.ly/2Jkrleo)
+[V1.1.0](http://bit.ly/2xGCAXU)
 
 
 ###### Changelog
-1. Added the ability to change prefix.
+1. Added a version checker this will probably change but right now you have to be running the current version of the bot to start. This will help keep you up to date on the latest features and fixes.
+2.Fixed prefix bug
 
 
 ###### Upcoming features
-0.1. Ability to index pokemon? This might be a bit tedious of a process will consider it.
-1. Catch duplicates on/off most bots have it why can't the best bot in the business have it too?
-2. A timeout feature. IE only runs for a certain period of time before shutting down.
+1. Timeout feature coming in 1.1.1 along with an auto level feature.
