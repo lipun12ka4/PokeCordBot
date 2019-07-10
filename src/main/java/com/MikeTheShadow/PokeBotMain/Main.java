@@ -2,6 +2,7 @@ package com.MikeTheShadow.PokeBotMain;
 
 import com.MikeTheShadow.PokeBotMain.Utils.GeneratePokedex;
 import com.MikeTheShadow.PokeBotMain.Utils.PokemonData;
+import com.MikeTheShadow.PokeBotMain.Utils.VersionChecker;
 import net.dv8tion.jda.api.AccountType;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
@@ -39,6 +40,11 @@ public class Main
 
     static void Start()
     {
+        if(!VersionChecker.CheckVersion())
+        {
+            Output("Bot outdated! Please download the latest version!");
+            return;
+        }
         //Load the user/legendary lists
         LoadLists();
         GeneratePokedex genDex = new GeneratePokedex("genDex");
@@ -96,6 +102,7 @@ public class Main
             MainPokeBotWindow.prefixBox.setText(PREFIX);
             MainPokeBotWindow.load();
             Main.Output("Complete!");
+            SaveProperties();
         }
         catch (Exception e)
         {
@@ -141,6 +148,7 @@ public class Main
         properties.setProperty("SHOWONLYWHITELIST",String.valueOf(showOnlyWhiteListed));
         properties.setProperty("SENDMESSAGES",String.valueOf(sendMessages));
         properties.setProperty("CHARACTER",CHARACTER);
+        properties.setProperty("PREFIX",PREFIX);
         try
         {
             properties.store(new FileOutputStream("pokebot.properties"),null);

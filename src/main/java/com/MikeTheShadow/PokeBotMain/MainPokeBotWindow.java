@@ -86,6 +86,11 @@ public class MainPokeBotWindow
             {
                 try
                 {
+                    if(!Main.LoadSetup())
+                    {
+                        output.add("Please fill out the Settings tab!");
+                        return;
+                    }
                     Main.stopped = false;
                     StartButton.setEnabled(false);
                     Main.SaveProperties();
