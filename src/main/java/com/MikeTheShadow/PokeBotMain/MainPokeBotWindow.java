@@ -116,7 +116,7 @@ public class MainPokeBotWindow
         loadImagelabel.setBounds(575, 546, 200, 14);
         PokeCordMainTab.add(loadImagelabel);
 
-        JLabel lblPokebot = new JLabel("PokeBot 1.1");
+        JLabel lblPokebot = new JLabel("PokeBot 1.2");
         lblPokebot.setFont(new Font("Tahoma", Font.PLAIN, 51));
         lblPokebot.setBounds(347, 11, 333, 71);
         PokeCordMainTab.add(lblPokebot);
