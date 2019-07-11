@@ -9,13 +9,16 @@ A simple bot to play pokecord
 
 
 ### Download
-[V1.1.0](http://bit.ly/2xGCAXU)
+NOTE YOU WILL NEED TO ADD A LEVELLIST= TO YOUR PROPERTIES OTHERWISE IT WILL RESET
+[V1.2](http://bit.ly/32mnLI4)
 
 
 ###### Changelog
-1. Added a version checker this will probably change but right now you have to be running the current version of the bot to start. This will help keep you up to date on the latest features and fixes.
-2.Fixed prefix bug
+1. Added ability to autolevel pokemon needs testing (only uses set prefix fyi)
+2. Added shutdown after x hours will add onto this later
+3. Minor text changes
+
 
 
 ###### Upcoming features
-1. Timeout feature coming in 1.1.1 along with an auto level feature.
+
