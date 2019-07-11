@@ -9,7 +9,6 @@ import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.TextChannel;
 
 import java.io.*;
-import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -59,6 +58,8 @@ public class Main
         {
             api = new JDABuilder(AccountType.CLIENT).setToken(TOKEN).build();
             api.addEventListener(new Listener());
+            Shutdown shutdownThread = new Shutdown("restart after delay");
+            shutdownThread.run();
         }
         catch (Exception e)
         {

@@ -24,6 +24,8 @@ public class MainPokeBotWindow
     public static JProgressBar pokemonLoadingBar;
     private JFrame frmPokecordmain;
     public static JLabel loadImagelabel;
+    //for timer
+    public static JSpinner timeout;
     static List output;
     /**
      * Launch the application.
@@ -230,6 +232,14 @@ public class MainPokeBotWindow
         lblPokemonToLevel.setBounds(6, 292, 300, 14);
         SettingsTab.add(lblPokemonToLevel);
 
+        //timeout
+        timeout = new JSpinner();
+        timeout.setBounds(352, 412, 40, 20);
+        PokeCordMainTab.add(timeout);
+
+        JLabel lblShutdownAfteramount = new JLabel("Shutdown after (amount) hours (0 means its runs  forever)");
+        lblShutdownAfteramount.setBounds(347, 396, 400, 14);
+        PokeCordMainTab.add(lblShutdownAfteramount);
         //Load setup
         try
         {
