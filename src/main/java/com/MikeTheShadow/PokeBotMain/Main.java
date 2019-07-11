@@ -98,16 +98,28 @@ public class Main
             catchEverythingEverywhere = Boolean.parseBoolean(properties.getProperty("CATCHEVERYTHING").toLowerCase());
             realisticCatch = Boolean.parseBoolean(properties.getProperty("REALISTICCATCH").toLowerCase());
             showOnlyWhiteListed = Boolean.parseBoolean(properties.getProperty("SHOWONLYWHITELIST").toLowerCase());
-            levelList = Arrays.asList(properties.getProperty("LEVELLIST").split(" "));
+            try
+            {
+                levelList = Arrays.asList(properties.getProperty("LEVELLIST").split(" "));
+            }
+            catch (Exception e)
+            {
+                levelList = null;
+                System.out.println("levelList empty ignoring...");
+            }
             if(properties.getProperty("CHARACTER") != null)CHARACTER = properties.getProperty("CHARACTER");
             if(TOKEN == null || TOKEN.length() < 5)return false;
             MainPokeBotWindow.tokenBox.setText(TOKEN);
             MainPokeBotWindow.channelBox.setText(channelid);
             MainPokeBotWindow.SpamBox.setText(CHARACTER);
             MainPokeBotWindow.prefixBox.setText(PREFIX);
-            for (String pokemon:levelList)
+            if(levelList != null)
             {
-                MainPokeBotWindow.pokemonLevelList.append(pokemon + "\n");
+                MainPokeBotWindow.pokemonLevelList.setText("");
+                for (String pokemon:levelList)
+                {
+                    MainPokeBotWindow.pokemonLevelList.append(pokemon + "\n");
+                }
             }
             MainPokeBotWindow.load();
             Main.Output("Complete!");
@@ -115,6 +127,7 @@ public class Main
         }
         catch (Exception e)
         {
+            e.printStackTrace();
             Main.Output("Please fill out settings tab");
             CreateProperties();
         }
@@ -160,14 +173,20 @@ public class Main
         properties.setProperty("SENDMESSAGES",String.valueOf(sendMessages));
         properties.setProperty("CHARACTER",CHARACTER);
         properties.setProperty("PREFIX",PREFIX);
-        String levelString = "";
-        for (String pokeName : levelList)
+        if(levelList.size() > 0)
         {
-            if(pokeName.length() > 0)
-            levelString += pokeName + " ";
+            String levelString = "";
+            for (String pokeName : levelList)
+            {
+                if(pokeName.length() > 0)
+                {
+                    levelString += pokeName + " ";
+                }
+
+            }
+            levelString = levelString.substring(0,levelString.length()-2);
+            properties.setProperty("LEVELLIST",levelString);
         }
-        levelString = levelString.substring(0,levelString.length()-2);
-        properties.setProperty("LEVELLIST",levelString);
         try
         {
             properties.store(new FileOutputStream("pokebot.properties"),null);
