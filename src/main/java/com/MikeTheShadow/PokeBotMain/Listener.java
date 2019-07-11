@@ -1,6 +1,5 @@
 package com.MikeTheShadow.PokeBotMain;
 
-import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.ChannelType;
 import net.dv8tion.jda.api.entities.MessageEmbed;
 import net.dv8tion.jda.api.events.ReadyEvent;
@@ -21,8 +20,16 @@ public class Listener extends ListenerAdapter
         if(msg.getMessage().getEmbeds().size() < 1) return;
         try
         {
-            if(msg.getMessage().getEmbeds().get(0).getDescription().contains(" is now"))
+            String username = Main.api.getSelfUser().getName().toLowerCase().split(" ")[0].replaceAll("[^a-zA-Z0-9]", "");
+            String input =  msg.getMessage().getEmbeds().get(0).getTitle().toLowerCase().replaceAll("[^a-zA-Z0-9]", "");
+            if(msg.getMessage().getEmbeds().get(0).getTitle().contains("Congratulations") && input.contains(username))
             {
+                if(msg.getMessage().getEmbeds().get(0).getDescription().contains("100!"))
+                {
+                    assert  Main.levelList.size() > 0;
+                    msg.getChannel().sendMessage(Main.PREFIX + "select " + Main.levelList.get(0));
+                    Main.levelList.remove(0);
+                }
                 return;
             }
         }
@@ -36,7 +43,6 @@ public class Listener extends ListenerAdapter
             {
                 MessageEmbed embed = msg.getMessage().getEmbeds().get(0);
                 System.setProperty("http.agent", "Chrome");
-                //get and send the url to the thread
                 URL url = new URL(embed.getImage().getUrl());
                 BufferedImage image = ImageIO.read(url);
                 PokeSolverThread solve = new PokeSolverThread("PokeThread",msg.getTextChannel(),image,url);

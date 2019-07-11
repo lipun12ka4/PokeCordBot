@@ -1,12 +1,8 @@
 package com.MikeTheShadow.PokeBotMain;
 
-import java.awt.EventQueue;
+import java.awt.*;
 
 import javax.swing.*;
-import java.awt.List;
-import java.awt.Color;
-import java.awt.Button;
-import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
@@ -24,6 +20,7 @@ public class MainPokeBotWindow
 
     static JTextField SpamBox;
     static JTextField channelBox,tokenBox,prefixBox;
+    static JTextArea pokemonLevelList;
     public static JProgressBar pokemonLoadingBar;
     private JFrame frmPokecordmain;
     public static JLabel loadImagelabel;
@@ -117,7 +114,7 @@ public class MainPokeBotWindow
         loadImagelabel.setBounds(575, 546, 200, 14);
         PokeCordMainTab.add(loadImagelabel);
 
-        JLabel lblPokebot = new JLabel("PokeBot 1.0");
+        JLabel lblPokebot = new JLabel("PokeBot 1.1");
         lblPokebot.setFont(new Font("Tahoma", Font.PLAIN, 51));
         lblPokebot.setBounds(347, 11, 333, 71);
         PokeCordMainTab.add(lblPokebot);
@@ -152,7 +149,7 @@ public class MainPokeBotWindow
         SettingsTab.setToolTipText("Settings");
         tabbedPane.addTab("Settings", null, SettingsTab, null);
 
-        sendMessages = new JCheckBox("Search for pokemon");
+        sendMessages = new JCheckBox("Find Pokemon");
         sendMessages.setActionCommand("newcheck");
         sendMessages.setBounds(6, 132, 169, 23);
         SettingsTab.add(sendMessages);
@@ -165,7 +162,7 @@ public class MainPokeBotWindow
         CatchOutsideChannel.setBounds(6, 184, 169, 23);
         SettingsTab.add(CatchOutsideChannel);
 
-        CatchEverything = new JCheckBox("Catch everything everywhere");
+        CatchEverything = new JCheckBox("Catch anything anywhere");
         CatchEverything.setBounds(6, 210, 169, 23);
         SettingsTab.add(CatchEverything);
 
@@ -198,9 +195,13 @@ public class MainPokeBotWindow
         SettingsTab.add(SpamBox);
         SpamBox.setColumns(10);
 
-        JLabel lblSpamChar = new JLabel("SPAM CHAR");
+        JLabel lblSpamChar = new JLabel("FIND POKE");
         lblSpamChar.setBounds(6, 65, 90, 14);
         SettingsTab.add(lblSpamChar);
+
+        JLabel Spamchardesclabel = new JLabel("This is what will be spammed over and over again");
+        Spamchardesclabel.setBounds(181, 63, 347, 14);
+        SettingsTab.add(Spamchardesclabel);
 
         JLabel lblNotRecommendedEspecially = new JLabel("Not recommended especially if you're in public discords with this account");
         lblNotRecommendedEspecially.setBounds(181, 214, 670, 14);
@@ -218,6 +219,17 @@ public class MainPokeBotWindow
         JLabel lblToken = new JLabel("TOKEN");
         lblToken.setBounds(6, 86, 73, 14);
         SettingsTab.add(lblToken);
+
+        //This is for the lists
+        pokemonLevelList = new JTextArea();
+        pokemonLevelList.setBounds(6, 315, 169, 195);
+        pokemonLevelList.setBackground(SystemColor.inactiveCaption);
+        SettingsTab.add(pokemonLevelList);
+
+        JLabel lblPokemonToLevel = new JLabel("Put pokemon ID's to level up below (one ID per line)");
+        lblPokemonToLevel.setBounds(6, 292, 300, 14);
+        SettingsTab.add(lblPokemonToLevel);
+
         //Load setup
         try
         {

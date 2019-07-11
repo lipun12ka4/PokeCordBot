@@ -9,6 +9,7 @@ import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.TextChannel;
 
 import java.io.*;
+import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -27,6 +28,8 @@ public class Main
     static boolean catchEverythingEverywhere = false;
     static boolean realisticCatch = true;
     static boolean showOnlyWhiteListed = false;
+    //list of pokemon to level
+    static List<String> levelList = new ArrayList<>();
     //version checking
     public static final String VERSION = "1.1.0";
     //New pokemon data much lighter and way more efficient
@@ -72,7 +75,6 @@ public class Main
 
     public static boolean LoadSetup() throws Exception
     {
-        Main.Output("Loading properties file...");
         Properties properties = new Properties();
         File propFile = new File("pokebot.properties");
         if(!propFile.exists())
@@ -84,6 +86,7 @@ public class Main
         properties.load(inStream);
         try
         {
+            Main.Output("Loading properties file...");
             PREFIX = properties.getProperty("PREFIX");
             CHARACTER = properties.getProperty("CHARACTER");
             channelid = properties.getProperty("CHANNELID");
@@ -94,12 +97,17 @@ public class Main
             catchEverythingEverywhere = Boolean.parseBoolean(properties.getProperty("CATCHEVERYTHING").toLowerCase());
             realisticCatch = Boolean.parseBoolean(properties.getProperty("REALISTICCATCH").toLowerCase());
             showOnlyWhiteListed = Boolean.parseBoolean(properties.getProperty("SHOWONLYWHITELIST").toLowerCase());
+            levelList = Arrays.asList(properties.getProperty("LEVELLIST").split(" "));
             if(properties.getProperty("CHARACTER") != null)CHARACTER = properties.getProperty("CHARACTER");
             if(TOKEN == null || TOKEN.length() < 5)return false;
             MainPokeBotWindow.tokenBox.setText(TOKEN);
             MainPokeBotWindow.channelBox.setText(channelid);
             MainPokeBotWindow.SpamBox.setText(CHARACTER);
             MainPokeBotWindow.prefixBox.setText(PREFIX);
+            for (String pokemon:levelList)
+            {
+                MainPokeBotWindow.pokemonLevelList.append(pokemon + "\n");
+            }
             MainPokeBotWindow.load();
             Main.Output("Complete!");
             SaveProperties();
@@ -124,6 +132,7 @@ public class Main
         properties.setProperty("SENDMESSAGES","false");
         properties.setProperty("CHARACTER","putcharhere");
         properties.setProperty("PREFIX","p!");
+        properties.setProperty("LEVELLIST","");
         properties.store(new FileOutputStream("pokebot.properties"),null);
     }
     static void SaveProperties()
@@ -138,6 +147,7 @@ public class Main
         channelid = MainPokeBotWindow.channelBox.getText();
         CHARACTER = MainPokeBotWindow.SpamBox.getText();
         PREFIX = MainPokeBotWindow.prefixBox.getText();
+        levelList = Arrays.asList(MainPokeBotWindow.pokemonLevelList.getText().split("\n"));
         Properties properties = new Properties();
         properties.setProperty("CHANNELID",channelid);
         properties.setProperty("TOKEN",TOKEN);
@@ -149,6 +159,14 @@ public class Main
         properties.setProperty("SENDMESSAGES",String.valueOf(sendMessages));
         properties.setProperty("CHARACTER",CHARACTER);
         properties.setProperty("PREFIX",PREFIX);
+        String levelString = "";
+        for (String pokeName : levelList)
+        {
+            if(pokeName.length() > 0)
+            levelString += pokeName + " ";
+        }
+        levelString = levelString.substring(0,levelString.length()-2);
+        properties.setProperty("LEVELLIST",levelString);
         try
         {
             properties.store(new FileOutputStream("pokebot.properties"),null);
