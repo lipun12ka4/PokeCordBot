@@ -9,16 +9,13 @@ A simple bot to play pokecord
 
 
 ### Download
-NOTE YOU WILL NEED TO ADD A LEVELLIST= TO YOUR PROPERTIES OTHERWISE IT WILL RESET
-or you can allow a new one to generate and fill it out
 
-[V1.2](http://bit.ly/2xEa35c)
+[V1.2.1](http://bit.ly/2Y38MDt)
 
 
 ###### Changelog
-1. Added ability to autolevel pokemon needs testing (only uses set prefix fyi)
-2. Added shutdown after x hours will add onto this later
-3. Minor text changes
+1.Fixed major bugs when setting up for the first time
+2.Fixed a bug with loading the leveling list
 
 
 
