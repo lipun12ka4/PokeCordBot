@@ -12,7 +12,7 @@ A simple bot to play pokecord
 NOTE YOU WILL NEED TO ADD A LEVELLIST= TO YOUR PROPERTIES OTHERWISE IT WILL RESET
 or you can allow a new one to generate and fill it out
 
-[V1.2](http://bit.ly/32mnLI4)
+[V1.2](http://bit.ly/2xEa35c)
 
 
 ###### Changelog
