@@ -17,7 +17,7 @@ public class Main
     static JDA api;
     static List<String> whitelist = new ArrayList<>();
     static TextChannel CHANNEL = null;
-    static String TOKEN = null;
+    private static String TOKEN = null;
     static String CHARACTER = ".";
     static String PREFIX = "p!";
     static String channelid = null;
@@ -30,7 +30,7 @@ public class Main
     //list of pokemon to level
     static List<String> levelList = new ArrayList<>();
     //version checking
-    public static final String VERSION = "1.2";
+    public static final String VERSION = "1.2.1";
     //New pokemon data much lighter and way more efficient
     public static List<PokemonData> pokemonData = new ArrayList<>();
 
@@ -74,14 +74,14 @@ public class Main
         MainPokeBotWindow.output.add(sdf.format(cal.getTime()) + ": " + output);
     }
 
-    public static boolean LoadSetup() throws Exception
+    static boolean LoadSetup() throws Exception
     {
         Properties properties = new Properties();
         File propFile = new File("pokebot.properties");
         if(!propFile.exists())
         {
             CreateProperties();
-            return false;
+            return true;
         }
         FileInputStream inStream = new FileInputStream(propFile);
         properties.load(inStream);
@@ -108,7 +108,7 @@ public class Main
                 System.out.println("levelList empty ignoring...");
             }
             if(properties.getProperty("CHARACTER") != null)CHARACTER = properties.getProperty("CHARACTER");
-            if(TOKEN == null || TOKEN.length() < 5)return false;
+            if(TOKEN == null || TOKEN.length() < 5)return true;
             MainPokeBotWindow.tokenBox.setText(TOKEN);
             MainPokeBotWindow.channelBox.setText(channelid);
             MainPokeBotWindow.SpamBox.setText(CHARACTER);
@@ -131,7 +131,7 @@ public class Main
             Main.Output("Please fill out settings tab");
             CreateProperties();
         }
-        return true;
+        return false;
     }
     static void CreateProperties() throws IOException
     {
@@ -175,17 +175,17 @@ public class Main
         properties.setProperty("PREFIX",PREFIX);
         if(levelList.size() > 0)
         {
-            String levelString = "";
+            StringBuilder levelString = new StringBuilder();
             for (String pokeName : levelList)
             {
                 if(pokeName.length() > 0)
                 {
-                    levelString += pokeName + " ";
+                    levelString.append(pokeName).append(" ");
                 }
 
             }
-            levelString = levelString.substring(0,levelString.length()-2);
-            properties.setProperty("LEVELLIST",levelString);
+            levelString = new StringBuilder(levelString.substring(0, levelString.length() - 1));
+            properties.setProperty("LEVELLIST", levelString.toString());
         }
         try
         {
