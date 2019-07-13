@@ -42,11 +42,22 @@ public class Listener extends ListenerAdapter
             try
             {
                 MessageEmbed embed = msg.getMessage().getEmbeds().get(0);
-                System.setProperty("http.agent", "Chrome");
+                System.out.println("DEBUG URL: " + embed.getImage().getUrl());
                 URL url = new URL(embed.getImage().getUrl());
-                BufferedImage image = ImageIO.read(url);
-                PokeSolverThread solve = new PokeSolverThread("PokeThread",msg.getTextChannel(),image,url);
-                solve.start();
+                try
+                {
+                    //BufferedImage image = ImageIO.read(url);
+                    PokeSolverThread solve = new PokeSolverThread("PokeThread",msg.getTextChannel(),url);
+                    solve.start();
+                }
+                catch (Exception e)
+                {
+                    System.out.println("THIS IS A HTTP.AGENT ERROR! Please report it in the not catching pokemon thread thansk!");
+                    e.printStackTrace();
+
+                }
+
+
             }
             catch (IOException e)
             {

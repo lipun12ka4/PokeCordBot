@@ -175,17 +175,24 @@ public class Main
         properties.setProperty("PREFIX",PREFIX);
         if(levelList.size() > 0)
         {
-            StringBuilder levelString = new StringBuilder();
+            String levelString = "";
             for (String pokeName : levelList)
             {
                 if(pokeName.length() > 0)
                 {
-                    levelString.append(pokeName).append(" ");
+                    levelString += pokeName + " ";
                 }
 
             }
-            levelString = new StringBuilder(levelString.substring(0, levelString.length() - 1));
-            properties.setProperty("LEVELLIST", levelString.toString());
+            try
+            {
+                levelString = levelString.substring(0, levelString.length() - 1);
+                properties.setProperty("LEVELLIST", levelString);
+            }
+            catch (Exception e)
+            {
+
+            }
         }
         try
         {

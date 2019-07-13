@@ -4,10 +4,9 @@ import net.dv8tion.jda.api.entities.TextChannel;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
+import java.net.URLConnection;
 import java.util.Random;
 
 public class PokeSolverThread implements Runnable
@@ -17,10 +16,12 @@ public class PokeSolverThread implements Runnable
     private TextChannel channel;
     private BufferedImage imageToRead;
     private URL pokemonURL;
-    PokeSolverThread(String name, TextChannel chan,BufferedImage image,URL url) throws IOException
+    PokeSolverThread(String name, TextChannel chan,URL url) throws IOException
     {
         this.channel = chan;
         threadName = name;
+        System.setProperty("http.agent", "Mozilla/5.0");
+        BufferedImage image = getImageFromURL(url);
         this.imageToRead = image;
         this.pokemonURL = url;
     }
@@ -109,4 +110,53 @@ public class PokeSolverThread implements Runnable
             thread.start();
         }
     }
+    private BufferedImage getImageFromURL(URL url) throws IOException
+    {
+        URLConnection openConnection = url.openConnection();
+        boolean check = true;
+
+        try
+        {
+
+            openConnection.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.95 Safari/537.11");
+            openConnection.connect();
+
+            if (openConnection.getContentLength() > 8000000)
+            {
+                System.out.println(" file size is too big.");
+                check = false;
+            }
+        } catch (Exception e)
+        {
+            System.out.println("Couldn't create a connection to the link, please recheck the link.");
+            check = false;
+            e.printStackTrace();
+        }
+        if (check)
+        {
+            BufferedImage img = null;
+            try
+            {
+                InputStream in = new BufferedInputStream(openConnection.getInputStream());
+                ByteArrayOutputStream out = new ByteArrayOutputStream();
+                byte[] buf = new byte[1024];
+                int n = 0;
+                while (-1 != (n = in.read(buf)))
+                {
+                    out.write(buf, 0, n);
+                }
+                out.close();
+                in.close();
+                byte[] response = out.toByteArray();
+                img = ImageIO.read(new ByteArrayInputStream(response));
+                return img;
+            } catch (Exception e)
+            {
+                System.out.println(" couldn't read an image from this link.");
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
+
 }
