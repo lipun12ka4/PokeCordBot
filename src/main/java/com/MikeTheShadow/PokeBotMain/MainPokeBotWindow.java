@@ -21,6 +21,7 @@ public class MainPokeBotWindow
     static JTextField SpamBox;
     static JTextField channelBox,tokenBox,prefixBox;
     static JTextArea pokemonLevelList;
+    static JTextField TimeField;
     public static JProgressBar pokemonLoadingBar;
     private JFrame frmPokecordmain;
     public static JLabel loadImagelabel;
@@ -117,7 +118,7 @@ public class MainPokeBotWindow
         loadImagelabel.setBounds(575, 546, 200, 14);
         PokeCordMainTab.add(loadImagelabel);
 
-        JLabel lblPokebot = new JLabel("PokeBot 1.2");
+        JLabel lblPokebot = new JLabel("PokeBot " + Main.VERSION);
         lblPokebot.setFont(new Font("Tahoma", Font.PLAIN, 51));
         lblPokebot.setBounds(347, 11, 333, 71);
         PokeCordMainTab.add(lblPokebot);
@@ -233,14 +234,40 @@ public class MainPokeBotWindow
         lblPokemonToLevel.setBounds(6, 292, 300, 14);
         SettingsTab.add(lblPokemonToLevel);
 
-        //timeout
-        timeout = new JSpinner();
-        timeout.setBounds(352, 412, 40, 20);
-        PokeCordMainTab.add(timeout);
+        //Time panel
+        JDesktopPane Time = new JDesktopPane();
+        Time.setBackground(Color.WHITE);
+        tabbedPane.addTab("Time", null, Time, null);
 
-        JLabel lblShutdownAfteramount = new JLabel("Shutdown after (amount) hours (0 means its runs  forever)");
-        lblShutdownAfteramount.setBounds(347, 396, 400, 14);
-        PokeCordMainTab.add(lblShutdownAfteramount);
+        JLabel lblThisIsFor = new JLabel("This is for the time settings you can set when you want the bot to run easily here.");
+        lblThisIsFor.setFont(new Font("Tahoma", Font.PLAIN, 18));
+        lblThisIsFor.setBounds(10, 10, 869, 38);
+        Time.add(lblThisIsFor);
+
+        JLabel explanation = new JLabel("To use this feature use 1-3 to mean between 1 to 3 o clock separate with a ,");
+        explanation.setFont(new Font("Tahoma", Font.PLAIN, 15));
+        explanation.setBounds(10, 40, 869, 38);
+        Time.add(explanation);
+
+        JLabel explanation2 = new JLabel("for example if you want 1-5pm you do 13-18 and if you want the hours 1 5 9 am");
+        explanation2.setFont(new Font("Tahoma", Font.PLAIN, 15));
+        explanation2.setBounds(10, 70, 869, 38);
+        Time.add(explanation2);
+
+        JLabel explanation3 = new JLabel("you do 1,5,9 to combine it do: 1,5,9,13-18 (no spaces or it will break) uses 24h time");
+        explanation3.setFont(new Font("Tahoma", Font.PLAIN, 15));
+        explanation3.setBounds(10, 100, 869, 38);
+        Time.add(explanation3);
+
+        TimeField = new JTextField();
+        TimeField.setColumns(10);
+        TimeField.setBounds(10, 391, 731, 20);
+        Time.add(TimeField);
+
+        JLabel lblPm = new JLabel("Time");
+        lblPm.setFont(new Font("Tahoma", Font.PLAIN, 20));
+        lblPm.setBounds(10, 357, 63, 23);
+        Time.add(lblPm);
         //Load setup
         try
         {

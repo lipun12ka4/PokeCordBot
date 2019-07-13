@@ -5,8 +5,7 @@ import net.dv8tion.jda.api.entities.MessageEmbed;
 import net.dv8tion.jda.api.events.ReadyEvent;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
+
 import java.io.*;
 import java.net.URL;
 
@@ -16,6 +15,8 @@ public class Listener extends ListenerAdapter
     @Override
     public void onMessageReceived(MessageReceivedEvent msg)
     {
+        //check if bot is afk or not
+        if(!Main.canRun) return;
         if(!msg.getAuthor().isBot() || !msg.getAuthor().getId().equals("365975655608745985") || msg.getChannel().getType() == ChannelType.PRIVATE)return;
         if(msg.getMessage().getEmbeds().size() < 1) return;
         try
@@ -76,8 +77,8 @@ public class Listener extends ListenerAdapter
         {
 
         }
-        Main.CHANNEL = Main.api.getTextChannelById(Main.channelid);
-        if(Main.channelid != null && Main.sendMessages)
+        Main.CHANNEL = Main.api.getTextChannelById(Main.channelID);
+        if(Main.channelID != null && Main.sendMessages)
         {
             Main.Output("Setting channel to: " + Main.CHANNEL.getName());
             OnConnect newThread = new OnConnect("MessageThread",Main.CHANNEL);

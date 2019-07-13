@@ -2,6 +2,7 @@ package com.MikeTheShadow.PokeBotMain;
 
 import com.MikeTheShadow.PokeBotMain.Utils.GeneratePokedex;
 import com.MikeTheShadow.PokeBotMain.Utils.PokemonData;
+import com.MikeTheShadow.PokeBotMain.Utils.TimeParser;
 import com.MikeTheShadow.PokeBotMain.Utils.VersionChecker;
 import net.dv8tion.jda.api.AccountType;
 import net.dv8tion.jda.api.JDA;
@@ -20,7 +21,7 @@ public class Main
     private static String TOKEN = null;
     static String CHARACTER = ".";
     static String PREFIX = "p!";
-    static String channelid = null;
+    static String channelID = null;
     static boolean sendMessages = true;
     static boolean catchOnlyWhiteListed = false;
     static boolean catchOutsideChannel = false;
@@ -30,22 +31,21 @@ public class Main
     //list of pokemon to level
     static List<String> levelList = new ArrayList<>();
     //version checking
-    public static final String VERSION = "1.2.1";
+    public static final String VERSION = "1.3";
     //New pokemon data much lighter and way more efficient
     public static List<PokemonData> pokemonData = new ArrayList<>();
-
     //use this to change the image spacing size
     public static int spacing = 35;
-
-    //restart booleans etc
-    static boolean stopped = false;
+    //for time management
+    public static boolean stopped = false;
+    public static boolean canRun = true;
+    public static String TimeString = "";
 
     static void Start()
     {
         if(!VersionChecker.CheckVersion())
         {
             Output("Bot outdated! Please download the latest version!");
-            return;
         }
         //Load the user/legendary lists
         LoadLists();
@@ -58,8 +58,8 @@ public class Main
         {
             api = new JDABuilder(AccountType.CLIENT).setToken(TOKEN).build();
             api.addEventListener(new Listener());
-            Shutdown shutdownThread = new Shutdown("restart after delay");
-            shutdownThread.run();
+            TimeParser timeParser = new TimeParser(MainPokeBotWindow.TimeField.getText());
+            timeParser.start();
         }
         catch (Exception e)
         {
@@ -90,7 +90,7 @@ public class Main
             Main.Output("Loading properties file...");
             PREFIX = properties.getProperty("PREFIX");
             CHARACTER = properties.getProperty("CHARACTER");
-            channelid = properties.getProperty("CHANNELID");
+            channelID = properties.getProperty("CHANNELID");
             TOKEN = properties.getProperty("TOKEN");
             sendMessages = Boolean.parseBoolean(properties.getProperty("SENDMESSAGES").toLowerCase());
             catchOnlyWhiteListed = Boolean.parseBoolean(properties.getProperty("WHITELIST").toLowerCase());
@@ -98,6 +98,7 @@ public class Main
             catchEverythingEverywhere = Boolean.parseBoolean(properties.getProperty("CATCHEVERYTHING").toLowerCase());
             realisticCatch = Boolean.parseBoolean(properties.getProperty("REALISTICCATCH").toLowerCase());
             showOnlyWhiteListed = Boolean.parseBoolean(properties.getProperty("SHOWONLYWHITELIST").toLowerCase());
+            TimeString = properties.getProperty("TIME");
             try
             {
                 levelList = Arrays.asList(properties.getProperty("LEVELLIST").split(" "));
@@ -110,9 +111,10 @@ public class Main
             if(properties.getProperty("CHARACTER") != null)CHARACTER = properties.getProperty("CHARACTER");
             if(TOKEN == null || TOKEN.length() < 5)return true;
             MainPokeBotWindow.tokenBox.setText(TOKEN);
-            MainPokeBotWindow.channelBox.setText(channelid);
+            MainPokeBotWindow.channelBox.setText(channelID);
             MainPokeBotWindow.SpamBox.setText(CHARACTER);
             MainPokeBotWindow.prefixBox.setText(PREFIX);
+            MainPokeBotWindow.TimeField.setText(TimeString);
             if(levelList != null)
             {
                 MainPokeBotWindow.pokemonLevelList.setText("");
@@ -147,6 +149,7 @@ public class Main
         properties.setProperty("CHARACTER","putcharhere");
         properties.setProperty("PREFIX","p!");
         properties.setProperty("LEVELLIST","");
+        properties.setProperty("TIME","");
         properties.store(new FileOutputStream("pokebot.properties"),null);
     }
     static void SaveProperties()
@@ -158,12 +161,13 @@ public class Main
         showOnlyWhiteListed = MainPokeBotWindow.ShowOnlyWhitelisted.isSelected();
         sendMessages = MainPokeBotWindow.sendMessages.isSelected();
         TOKEN = MainPokeBotWindow.tokenBox.getText();
-        channelid = MainPokeBotWindow.channelBox.getText();
+        channelID = MainPokeBotWindow.channelBox.getText();
         CHARACTER = MainPokeBotWindow.SpamBox.getText();
         PREFIX = MainPokeBotWindow.prefixBox.getText();
         levelList = Arrays.asList(MainPokeBotWindow.pokemonLevelList.getText().split("\n"));
+        TimeString = MainPokeBotWindow.TimeField.getText();
         Properties properties = new Properties();
-        properties.setProperty("CHANNELID",channelid);
+        properties.setProperty("CHANNELID", channelID);
         properties.setProperty("TOKEN",TOKEN);
         properties.setProperty("WHITELIST",String.valueOf(catchOnlyWhiteListed));
         properties.setProperty("CATCHOUTSIDE",String.valueOf(catchOutsideChannel));
@@ -173,6 +177,7 @@ public class Main
         properties.setProperty("SENDMESSAGES",String.valueOf(sendMessages));
         properties.setProperty("CHARACTER",CHARACTER);
         properties.setProperty("PREFIX",PREFIX);
+        properties.setProperty("TIME",TimeString);
         if(levelList.size() > 0)
         {
             String levelString = "";

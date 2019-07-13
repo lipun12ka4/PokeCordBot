@@ -21,27 +21,30 @@ public class OnConnect implements Runnable
     }
     public void run()
     {
+
         while(true)
         {
-            try
+            if(Main.canRun)
             {
-                if(!Main.stopped)
+                try
                 {
-                    channel.sendMessage(Main.CHARACTER).complete();
-                    Random ran = new Random();
-                    Thread.sleep(700 + ran.nextInt(500));
+                    if(!Main.stopped)
+                    {
+                        channel.sendMessage(Main.CHARACTER).complete();
+                        Random ran = new Random();
+                        Thread.sleep(700 + ran.nextInt(500));
+                    }
+                    else
+                    {
+                        return;
+                    }
                 }
-                else
+                catch (Exception e)
                 {
-                    return;
+                    e.printStackTrace();
                 }
-            }
-            catch (Exception e)
-            {
-                e.printStackTrace();
             }
         }
-
     }
     void start()
     {
