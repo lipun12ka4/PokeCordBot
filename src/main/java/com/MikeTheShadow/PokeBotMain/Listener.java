@@ -5,9 +5,9 @@ import net.dv8tion.jda.api.entities.MessageEmbed;
 import net.dv8tion.jda.api.events.ReadyEvent;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
-
 import java.io.*;
 import java.net.URL;
+import java.util.Objects;
 
 public class Listener extends ListenerAdapter
 {
@@ -21,15 +21,39 @@ public class Listener extends ListenerAdapter
         if(msg.getMessage().getEmbeds().size() < 1) return;
         try
         {
-            String username = Main.api.getSelfUser().getName().toLowerCase().split(" ")[0].replaceAll("[^a-zA-Z0-9]", "");
-            String input =  msg.getMessage().getEmbeds().get(0).getTitle().toLowerCase().replaceAll("[^a-zA-Z0-9]", "");
-            if(msg.getMessage().getEmbeds().get(0).getTitle().contains("Congratulations") && input.contains(username))
+            String username = Main.api.getSelfUser().getName().toLowerCase();
+            String input =  Objects.requireNonNull(msg.getMessage().getEmbeds().get(0).getTitle()).toLowerCase();
+            /*Use this if it breaks again
+            if(Objects.requireNonNull(msg.getMessage().getEmbeds().get(0).getTitle()).contains("Congratulations"))
             {
-                if(msg.getMessage().getEmbeds().get(0).getDescription().contains("100!"))
+                if(username.contains(input)) System.out.println("Username contains input");
+                if(input.contains(username)) System.out.println("Input contains Username");
+                System.out.println(username + ":" + username.length());
+                System.out.println(username + ":" + input.length());
+            }
+            if(msg.getMessage().getEmbeds().get(0).getTitle().toLowerCase().contains("congratulations"))System.out.println("found gratz message");
+            */
+            if(msg.getMessage().getEmbeds().get(0).getTitle().toLowerCase().contains("congratulations") && input.contains(username))
+            {
+                if(Objects.requireNonNull(msg.getMessage().getEmbeds().get(0).getDescription()).contains("100!"))
                 {
                     assert  Main.levelList.size() > 0;
-                    msg.getChannel().sendMessage(Main.PREFIX + "select " + Main.levelList.get(0));
+                    msg.getChannel().sendMessage(Main.PREFIX + "select " + Main.levelList.get(0)).complete();
                     Main.levelList.remove(0);
+                    if(Main.levelList.size() > 0)
+                    {
+                        System.out.println("Resetting list");
+                        MainPokeBotWindow.pokemonLevelList.setText("");
+                        for (String pokemon:Main.levelList)
+                        {
+                            MainPokeBotWindow.pokemonLevelList.append(pokemon + "\n");
+                        }
+                    }
+                    else
+                    {
+                        MainPokeBotWindow.pokemonLevelList.setText("");
+                    }
+                    Main.SaveProperties();
                 }
                 return;
             }
@@ -43,7 +67,6 @@ public class Listener extends ListenerAdapter
             try
             {
                 MessageEmbed embed = msg.getMessage().getEmbeds().get(0);
-                System.out.println("DEBUG URL: " + embed.getImage().getUrl());
                 URL url = new URL(embed.getImage().getUrl());
                 try
                 {
@@ -69,14 +92,6 @@ public class Listener extends ListenerAdapter
     @Override
     public void onReady(ReadyEvent event)
     {
-        try
-        {
-            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-        }
-        catch (Exception ignored)
-        {
-
-        }
         Main.CHANNEL = Main.api.getTextChannelById(Main.channelID);
         if(Main.channelID != null && Main.sendMessages)
         {

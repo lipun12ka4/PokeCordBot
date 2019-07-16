@@ -26,7 +26,6 @@ public class TimeParser implements Runnable
 
                 int StartTime = Integer.parseInt(abTime[0]);
                 int endTime = Integer.parseInt(abTime[1]);
-                System.out.println(StartTime + "\n" + endTime);
                 if(StartTime <= currentTime && endTime > currentTime)
                 {
                     return true;

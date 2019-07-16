@@ -39,7 +39,7 @@ public class Main
     //for time management
     public static boolean stopped = false;
     public static boolean canRun = true;
-    public static String TimeString = "";
+    private static String TimeString = "";
 
     static void Start()
     {
